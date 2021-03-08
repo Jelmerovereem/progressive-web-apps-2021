@@ -1,0 +1,22 @@
+{
+  "name": "weather-app",
+  "version": "1.0.0",
+  "description": "Get the weather details from all over the world with a interactive map.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jelmerovereem/progressive-web-apps-2021.git"
+  },
+  "author": "Jelmer Overeem <jelmer_overeem@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jelmerovereem/progressive-web-apps-2021/issues"
+  },
+  "homepage": "https://github.com/Jelmerovereem/progressive-web-apps-2021#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
