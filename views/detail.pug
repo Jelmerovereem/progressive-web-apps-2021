@@ -1,0 +1,15 @@
+html(lang="nl")
+	head
+		title #{pageTitle}
+		meta(charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+		//- link(rel="stylesheet" href="styles/detail.css")
+		include partials/head.pug
+	main
+		include ../static/assets/background-mountain.svg
+		div(class="wrapper")
+			img(src="assets/sun.png" class="sunOrMoon")
+		a(href="/" class="backBtn")
+			img(src="assets/back.svg")
+		p(class="cityName") #{weatherData.name}
+		span(class="updatedText")
+		p(class="temp") #{weatherData.main.temp}
