@@ -30,9 +30,14 @@ Once you're in the directory, install the required node modules:
 npm install
 ```
 
+Then build the static dist folder
+```
+npm run build
+```
+
 Finally, start the server:
 ```
-npm start or node server.js
+npm run start-server
 ```
 
 ## Build
@@ -89,6 +94,66 @@ html(lang="en")
 		title #{pageTitle}
 ```
 
+**Static building**  
+I followed the talk from Declan for pre-building your website. I followed his steps and now the home page is pre-build inside the `dist/` folder. The templating engine is rendered, the static assets are copy pasted and the CSS & JavaScript files are also pre-built.
+
+_Building HTML / render template file_
+```js
+function createHtml() {
+	const title = "Weather app";
+	const data = {
+		pageTitle: title
+	}
+	const compiledFunction = pug.compileFile("./views/home.pug");
+	const html = compiledFunction(data);
+
+	fs.writeFile("./dist/index.html", html, (err) => {
+		if (err) console.log(err);
+	})
+}
+```
+
+_Copy paste static assets_
+```js
+import gulp from "gulp";
+
+gulp.src("./static/assets/**/*.*").pipe(gulp.dest("./dist/assets/"))
+```
+
+_Build CSS_
+```js
+import gulp from "gulp";
+import cleanCss from "gulp-clean-css";
+import concat from "gulp-concat";
+
+gulp.src([
+	"./static/styles/*.css"
+	])
+.pipe(cleanCss())
+.pipe(concat("main.css"))
+.pipe(gulp.dest("./dist/styles/"))
+```
+
+_Build js_
+```js
+import gulp from "gulp";
+import babel from "gulp-babel";
+import uglify from "gulp-uglify";
+import concat from "gulp-concat";
+import rollup from "gulp-rollup";
+
+gulp.src([
+	"./static/scripts/main.js"])
+	.pipe(rollup({
+		input: "./static/scripts/main.js",
+		allowRealFiles: true,
+		format: "esm"
+	}))
+	.pipe(babel())
+	.pipe(uglify())
+	.pipe(concat("main.js"))
+	.pipe(gulp.dest("./dist/scripts/"))
+```
 
 <!-- ...but how does one use this project? What are its features 🤔 -->
 
