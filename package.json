@@ -5,9 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "prebuild": "echo \"Welcome, first removing the dist directory\" && npm run clearDist",
+    "prebuild": "echo \"Welcome, first removing the dist directory\" && exit 0 && npm run clearDist",
     "build": "npm run buildhtml && npm run buildcss && npm run buildassets && npm run buildjs",
-    "postbuild": "node server.js",
+    "postbuild": "echo \"To run website run: $(tput setaf 2)npm run start-server$(tput sgr 0)\"",
+    "start-server": "node server.js",
     "serveSite": "node scripts/serveDist.js",
     "clearDist": "node scripts/clear-dist.js",
     "buildhtml": "node scripts/build-html.js",
