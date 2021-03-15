@@ -20,6 +20,9 @@ app.use(express.static("dist"))
 app.use(urlencodedParser);
 app.use(bodyParser.json())
 app.set("view engine", "pug");
+
+routes();
+
 app.post("/getWeatherData", getWeatherData);
 
 export const weatherApiConfig = {
