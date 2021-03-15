@@ -1,0 +1,16 @@
+{
+	"name": "Weather app",
+	"short_name": "Weather app",
+	"description": "Get the weather details from all over the world with a interactive map.",
+	"theme_color": "#fc043c",
+	"background_color": "#fc043c",
+	"display": "standalone",
+	"Scope": "/",
+	"start_url": "/",
+	"icons": [
+		{
+			"src": "assets/favicon.png",
+			"sizes": "72x72",
+			"type": "image/png"
+		}]
+}
