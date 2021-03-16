@@ -14,7 +14,7 @@ export default function toMap(weatherData) {
 			<span>${temp}°C</span>
 			<img src="${iconsUrl}${icon}@2x.png" class="weatherIcon" alt="weather-icon">
 		</div>
-		<p><a href="/${city}">${city}</a></p>
+		<p><a href="/city/${city}">${city}</a></p>
 	`;
 	marker.bindPopup(markerHtml).openPopup();
 }
