@@ -1,8 +1,9 @@
 import { app } from "../../server.js";
-import { renderHome, renderDetail } from "./renders.js";
+import { renderHome, renderDetail, renderOffline } from "./renders.js";
 
 export default function routes() {
 	app
 		.get("/", renderHome)
-		.get("/:city", renderDetail);
+		.get("/city/:city", renderDetail)
+		.get("/offline", renderOffline)
 }
