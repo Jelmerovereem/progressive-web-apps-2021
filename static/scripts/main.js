@@ -1,5 +1,5 @@
 import { leafletMap } from "./utils/mapUtils.js";
-import { searchInput, getLocationBtn, searchBtn} from "./utils/searchUtils.js";
+import { searchInput, getLocationBtn, searchBtn, errMsg} from "./utils/searchUtils.js";
 import fetchData from "./modules/fetch.js";
 import toMap from "./modules/toMap.js";
 import getCoordinates from "./modules/getCoordinates.js";
@@ -15,7 +15,13 @@ function initEventListeners() {
 	searchBtn.addEventListener("click", async () => {
 		options.body = JSON.stringify({type: "city", city: searchInput.value});
 		const weatherData = await fetchData("/getWeatherData", options);
-		toMap(weatherData.weatherData)
+		if(Object.keys(weatherData).length != 0) {
+			errMsg.classList.remove("showError");
+			toMap(weatherData.weatherData)
+		} else {
+			errMsg.classList.add("showError");
+			errMsg.innerText = "Kon opgegeven stad niet vinden. Probeer iets anders :)";
+		}
 	})
 
 	getLocationBtn.addEventListener("click", async () => {

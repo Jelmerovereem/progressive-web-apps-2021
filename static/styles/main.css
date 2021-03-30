@@ -51,7 +51,20 @@ html, body, #map {
 	opacity: 1;
 }
 
-.searchBtn, .getLocation {
+.nojs-errMsg {
+	box-sizing: border-box;
+	background: #d83a3a;
+	padding: 10px 30px;
+	color: white;
+	border-radius: 0 0 5px 5px;
+	width: 100%;
+}
+
+.nojs-err-direct {
+	color: white;
+}
+
+.searchBtn, .getLocation, .nojs-searchBtn {
 	text-decoration: none;
 	color: white;
 	background: lightgreen;
@@ -59,7 +72,12 @@ html, body, #map {
 	border-radius: 5px;
 }
 
-.searchBtn:hover, .getLocation:hover {
+.nojs-searchBtn {
+	cursor: pointer;
+	border: none;
+}
+
+.searchBtn:hover, .getLocation:hover, .nojs-searchBtn:hover {
 	background: #71bd71;
 }
 
