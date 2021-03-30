@@ -30,6 +30,8 @@
   "dependencies": {
     "@babel/core": "^7.13.10",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
@@ -39,6 +41,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-rollup": "^2.17.0",
     "gulp-uglify": "^3.0.2",
+    "localhost-logger": "^1.0.5",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
     "rimraf": "^3.0.2",
