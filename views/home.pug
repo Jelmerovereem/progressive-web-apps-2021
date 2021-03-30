@@ -11,6 +11,14 @@ html(lang="nl")
 		include partials/head.pug
 	body
 		div(class="main")
+			noscript
+				p(class="nojs-errMsg") Deze applicatie werkt beter als je JavaScript aan hebt! 
+					a(href="https://support.clio.com/hc/en-us/articles/360040902634-How-to-Enable-JavaScript-in-Your-Web-Browser" class="nojs-err-direct" target="_blank") Klik hier voor meer uitleg
+				form(action="/searchCity" method="POST")
+					input(type="text" class="searchCity" name="city" placeholder="Zoek een stad..." required)
+					button(type="submit" class="nojs-searchBtn") Zoek
+				style(type="text/css").
+					.searchContent {display: none;}
 			div(class="searchContent")
 				div
 					input(type="text" id="city" class="searchCity" placeholder="Zoek een stad...")
