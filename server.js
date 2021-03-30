@@ -9,41 +9,26 @@ const urlencodedParser = bodyParser.urlencoded({
 
 import fetch from "node-fetch";
 
+import compression from "compression";
+
+import localLog from "localhost-logger"; // own package: https://www.npmjs.com/package/localhost-logger
 
 export const app = express();
 
 import routes from "./modules/controllers/routes.js";
-import fetchData from "./modules/helpers/fetchData.js";
-import backgroundCss from "./modules/backgroundCss.js";
+import posts from "./modules/controllers/posts.js";
 
-app.use(express.static("dist"))
+app.use(express.static("dist"));
 app.use(urlencodedParser);
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+app.use(compression())
 app.set("view engine", "pug");
 
 routes();
+posts();
 
-app.post("/getWeatherData", getWeatherData);
-
-export const weatherApiConfig = {
-	baseUrl: "https://api.openweathermap.org/data/2.5/weather",
-	units: "metric",
-	apiKey: "5c8601ba0008d71d05e037ba2a55d3c9"
-}
-
-async function getWeatherData(req, res) {
-	let searchString;
-	if (req.body.type === "city") {
-		searchString = `q=${req.body.city}`;
-	} else if (req.body.type === "coords") {
-		searchString = `lat=${req.body.coords.lat}&lon=${req.body.coords.lon}`;
-	}
-	
-	const url = `${weatherApiConfig.baseUrl}?${searchString}&units=${weatherApiConfig.units}&appid=${weatherApiConfig.apiKey}`;
-	const weatherData = await fetchData(url);
-	
-	res.setHeader("Content-Type", "application/json");
-	res.send({weatherData});
-}
-
-app.listen(process.env.PORT || 7000, () => console.log("Server is running on port 7000"));
+const port = process.env.PORT || 7000;
+app.listen(port, () => {
+	console.log(localLog(port));
+	console.log(`Server is running on port ${port}`);
+});

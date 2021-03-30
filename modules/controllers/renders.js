@@ -1,9 +1,10 @@
-import { weatherApiConfig } from "../../server.js";
+import { weatherApiConfig } from "../helpers/apiconfig.js";
 import fetchData from "../helpers/fetchData.js";
 import backgroundCss from "../backgroundCss.js";
+import compression from "compression";
 
 function renderHome(req, res) {
-	res.sendFile("dist/index.html");
+	res.sendFile(compression("dist/index.html"));
 }
 
 async function renderDetail(req, res) {
