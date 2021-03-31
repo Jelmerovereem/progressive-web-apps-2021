@@ -11,8 +11,6 @@ import fetch from "node-fetch";
 
 import compression from "compression";
 
-import localLog from "localhost-logger"; // own package: https://www.npmjs.com/package/localhost-logger
-
 export const app = express();
 
 import routes from "./modules/controllers/routes.js";
