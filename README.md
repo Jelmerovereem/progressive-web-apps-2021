@@ -51,6 +51,11 @@ Then build the static dist folder
 $ npm run build
 ```
 
+Fill in your .env file with your API keys. (See [.env.example](https://github.com/Jelmerovereem/progressive-web-apps-2021/blob/master/.env.example))
+```
+apikey={YOUR_KEY}
+```
+
 Finally, start the server:
 ```sh
 $ npm run start-server
@@ -227,7 +232,8 @@ You can call/intercept different events from the service worker to get your appl
 * Activate
 * Fetch
 
-How I used the service worker:
+How I used the service worker:  
+**Init**
 ```js
 const CACHE_VERSION = "v1"; // init a version for versioning (not yet in use)
 const CORE_ASSETS = [ // init assets that need to be cached
@@ -242,7 +248,9 @@ const CORE_ASSETS = [ // init assets that need to be cached
 const EXCLUDE_FILES = [ // init assets that need to be excluded from caching
 	"/" // home page
 ]
-
+```
+**Install**
+```js
 self.addEventListener("install", (event) => { // install the service worker in the browser
 	console.log("installing service worker");
 	/* if service worker isn't installed yet */
@@ -253,7 +261,9 @@ self.addEventListener("install", (event) => { // install the service worker in t
 				})
 		)
 })
-
+```
+**Activate**
+```js
 self.addEventListener("activate", (event) => {
 	console.log("activating service worker")
 	event.waitUntil(clients.claim()); // check all tabs and handle all requests
@@ -266,7 +276,9 @@ self.addEventListener("activate", (event) => {
 			}))
 	})
 })
-
+```
+**Fetch**
+```js
 self.addEventListener("fetch", async (event) => {
 	if (event.request.method === "GET" && CORE_ASSETS.includes(getPathName(event.request.url))) { // if a request matches a core asset
 		event.respondWith(
@@ -283,9 +295,9 @@ self.addEventListener("fetch", async (event) => {
 		)
 	}
 })
-
-/* Helper functions */
-
+```
+**Helpers**
+```js
 function getPathName(requestUrl) {
 	const url = new URL(requestUrl);
 	return url.pathname;
@@ -311,7 +323,7 @@ function isHtmlGetRequest(request) {
 ```
 
 ## Optimizing
-I've used multiple optimizing methods
+I've used multiple optimizing methods, like compression and caching.
 
 ### Compression
 I used the npm package [compression](https://www.npmjs.com/package/compression) to compress the middleware of my application. So every rendered file will be compressed.
@@ -330,6 +342,7 @@ Without compression:
 With compression:  
 ![with_compression_detail-page](https://user-images.githubusercontent.com/58043913/113121699-31a71700-9213-11eb-8ea5-fca6c2f1dda7.jpg)
 
+No shocking results, but all the little things count.
 
 ### Caching
 The performance is also optimized with caching, I've explained about caching in the [Service worker section](#service-worker).  
@@ -344,6 +357,30 @@ _Homepage_
 ![with_caching_home-page](https://user-images.githubusercontent.com/58043913/113122396-de819400-9213-11eb-974f-22d9658df7e5.png)  
 _Detail page_  
 ![with_caching_detail-page](https://user-images.githubusercontent.com/58043913/113122491-f822db80-9213-11eb-809b-428d1467f050.png)
+
+The homepage has a very good result! Almost a whole second faster.
+
+## npm packages used
+### Dependencies
+* [@babel/core](https://www.npmjs.com/package/@babel/core)
+* [body-parser](https://www.npmjs.com/package/body-parser)
+* [compression](https://www.npmjs.com/package/compression)
+* [dotenv](https://www.npmjs.com/package/dotenv)
+* [ejs](https://www.npmjs.com/package/ejs)
+* [express](https://www.npmjs.com/package/express)
+* [file-system](https://www.npmjs.com/package/file-system)
+* [gulp](https://www.npmjs.com/package/gulp)
+* [gulp-babel](https://www.npmjs.com/package/gulp-babel)
+* [gulp-clean-css](https://www.npmjs.com/package/gulp-clean-css)
+* [gulp-concat](https://www.npmjs.com/package/gulp-concat)
+* [gulp-rollup](https://www.npmjs.com/package/gulp-rollup)
+* [gulp-uglify](https://www.npmjs.com/package/gulp-uglify)
+* [node-fetch](https://www.npmjs.com/package/node-fetch)
+* [pug](https://www.npmjs.com/package/pug)
+* [rimraf](https://www.npmjs.com/package/rimraf)
+
+### devDependencies
+* [localhost-logger](https://www.npmjs.com/package/localhost-logger) <-- My own npm package! 😝
 
 ## APIs used
 
