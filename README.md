@@ -1,4 +1,4 @@
-# Progressive Web Apps @cmda-minor-web · 20-21
+# Weather app
 
 This application shows you the weather for all over the world! With the interactive map you can search all over the world.
 
