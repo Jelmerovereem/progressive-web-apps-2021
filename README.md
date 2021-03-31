@@ -360,6 +360,31 @@ _Detail page_
 
 The homepage has a very good result! Almost a whole second faster.
 
+### Lighthouse
+With the lighthouse option in devTools you can test your website for performance, best practices, accessibility and Progressive Web App.
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Homepage result</summary>
+
+_Mobile_  
+![lighthouse_result_homepage_mobile](https://user-images.githubusercontent.com/58043913/113130249-24425a80-921c-11eb-8c8f-073c20445b1d.png)  
+_Desktop_  
+![lighthouse_result_homepage_desktop](https://user-images.githubusercontent.com/58043913/113131625-bc8d0f00-921d-11eb-82e9-09fe3f7a4519.png)
+
+</details>
+
+<details style="margin: 1em 0;">
+  <summary style="margin: 1em 0;">Detailpage result</summary>
+
+This is the result on the detailpage:  
+_Mobile_  
+![lighthouse_result_detail_mobile](https://user-images.githubusercontent.com/58043913/113130473-68cdf600-921c-11eb-9b61-47d22b7183f7.png)  
+_Desktop_  
+![lighthouse_result_detail_desktop](https://user-images.githubusercontent.com/58043913/113131820-fa8a3300-921d-11eb-9611-b9f50787b460.png)
+
+The Progressive Web App emblem is present! 🎉
+
+</details>
+
 ## npm packages used
 ### Dependencies
 * [@babel/core](https://www.npmjs.com/package/@babel/core)
