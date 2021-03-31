@@ -140,8 +140,8 @@ function createHtml() {
 	const data = {
 		pageTitle: title
 	}
-	const compiledFunction = pug.compileFile("./views/home.pug"); // compile the pug file to html string
-	const html = compiledFunction(data); // compile the homepage with the data
+
+	const html = pug.renderFile("./views/home.pug", data); // compile and render file
 
 	fs.writeFile("./dist/index.html", html, (err) => { // write the html to the dist folder
 		if (err) console.log(err); // show error if present
@@ -309,6 +309,41 @@ function isHtmlGetRequest(request) {
 	return request.method === "GET" && (request.headers.get("accept") !== null && request.headers.get("accept").indexOf("text/html") > -1)
 } 
 ```
+
+## Optimizing
+I've used multiple optimizing methods
+
+### Compression
+I used the npm package [compression](https://www.npmjs.com/package/compression) to compress the middleware of my application. So every rendered file will be compressed.
+You init it like:
+```js
+import compression from "compression";
+
+app.use(compression())
+```
+
+The difference between no compression and compression:  
+_I only tested detail page, because homepage is pre-built._  
+Without compression:  
+![without_compression_detail-page](https://user-images.githubusercontent.com/58043913/113121623-205e0a80-9213-11eb-9f4a-46ddb9406cd9.jpg)  
+
+With compression:  
+![with_compression_detail-page](https://user-images.githubusercontent.com/58043913/113121699-31a71700-9213-11eb-8ea5-fca6c2f1dda7.jpg)
+
+
+### Caching
+The performance is also optimized with caching, I've explained about caching in the [Service worker section](#service-worker).  
+
+Without caching:  
+_Homepage_  
+![without_caching_home-page](https://user-images.githubusercontent.com/58043913/113122095-95314480-9213-11eb-920e-7231af4b3d2c.jpg)  
+_Detail page_  
+![with_compression_detail-page](https://user-images.githubusercontent.com/58043913/113121699-31a71700-9213-11eb-8ea5-fca6c2f1dda7.jpg)  
+With caching:  
+_Homepage_  
+![with_caching_home-page](https://user-images.githubusercontent.com/58043913/113122396-de819400-9213-11eb-974f-22d9658df7e5.png)  
+_Detail page_  
+![with_caching_detail-page](https://user-images.githubusercontent.com/58043913/113122491-f822db80-9213-11eb-809b-428d1467f050.png)
 
 ## APIs used
 
