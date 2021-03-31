@@ -328,7 +328,19 @@ function fetchAndCache(request, cachename) {
 
 function isHtmlGetRequest(request) {
 	return request.method === "GET" && (request.headers.get("accept") !== null && request.headers.get("accept").indexOf("text/html") > -1)
-} 
+}
+
+async function postMessageToClient(event, url) { // send url for localstorage
+	const client = await clients.get(event.resultingClientId);
+	if (client) {
+		client.postMessage({
+			msg: "localStorage",
+			url: url
+		})
+	} else {
+		console.error("Client is undefined");
+	}
+}
 ```
 
 ## Optimizing
@@ -477,4 +489,4 @@ data = {
 - [More about service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 - [clients.claim()](https://developer.mozilla.org/en-US/docs/Web/API/Clients/claim)
 - [client.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage)
-- [Time to first byte](https://blog.stackpath.com/time-to-first-byte/#:~:text=Time%20to%20first%20byte%20(TTFB,contents%20of%20a%20web%20page.)
+- [Time to first byte](https://blog.stackpath.com/time-to-first-byte/)
