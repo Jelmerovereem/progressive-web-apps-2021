@@ -6,4 +6,15 @@ script.
 					return registration.update();
 				})
 		});
+		navigator.serviceWorker.addEventListener("message", (event) => {
+			if (!localStorage.getItem("caches")) {
+				localStorage.setItem("caches", JSON.stringify([event.data.url]));
+			} else {
+				const cachesArray = JSON.parse(localStorage.getItem("caches"));
+				if (cachesArray.indexOf(event.data.url) === -1) {
+					cachesArray.push(event.data.url);
+					localStorage.setItem("caches", JSON.stringify(cachesArray));
+				}
+			}
+		})
 	}

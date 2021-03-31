@@ -1,7 +1,25 @@
 html(lang="nl")
 	head
+		base(href="/")
 		meta(charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-		link(rel="stylesheet" href="styles/main.css")
+		link(rel="stylesheet" type="text/css" href="styles/main.css")
 		link(rel="icon" type="image/png" href="assets/favicon.png")
+	style(type="text/css").
+		h1 {
+			color: #fc043c;
+		}
 	body
-		p Je bent offline! wajoo
+		h1 You are offline!
+	script.
+		if (!localStorage.getItem("caches")) {
+			const noPagesHtml = `<p>You have no cached pages!</p>`;
+			document.querySelector("body").insertAdjacentHTML("beforeend", noPagesHtml);
+		} else {
+			let cacheListHtml = `<p>Your cached pages!</p><ul>`;
+			const cacheList = JSON.parse(localStorage.getItem("caches"));
+			cacheList.forEach((cache) => {
+				cacheListHtml += `<li><a href="${cache}">${cache}</a></li>`;
+			})
+			cacheListHtml += `</ul>`;
+			document.querySelector("body").insertAdjacentHTML("beforeend", cacheListHtml);
+		}
