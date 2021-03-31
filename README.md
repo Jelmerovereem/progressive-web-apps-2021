@@ -490,3 +490,7 @@ data = {
 - [clients.claim()](https://developer.mozilla.org/en-US/docs/Web/API/Clients/claim)
 - [client.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage)
 - [Time to first byte](https://blog.stackpath.com/time-to-first-byte/)
+
+## License
+
+[MIT](LICENSE)
