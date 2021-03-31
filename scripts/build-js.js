@@ -6,12 +6,12 @@ import rollup from "gulp-rollup";
 
 gulp.src([
 	"./static/scripts/main.js"])
-	.pipe(rollup({
+	.pipe(rollup({ // bundle the ES6 module files
 		input: "./static/scripts/main.js",
 		allowRealFiles: true,
 		format: "esm"
 	}))
-	.pipe(babel())
-	.pipe(uglify())
-	.pipe(concat("main.js"))
+	.pipe(babel()) // create backwards compatible JavaScript. Mostly syntax
+	.pipe(uglify()) // minify javascript
+	.pipe(concat("main.js")) // concact all JavaScript files to one file
 	.pipe(gulp.dest("./dist/scripts/"))
