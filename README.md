@@ -476,4 +476,5 @@ data = {
 - [Web.dev about adding a manifest](https://web.dev/add-manifest/)
 - [More about service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 - [clients.claim()](https://developer.mozilla.org/en-US/docs/Web/API/Clients/claim)
+- [client.postMessage()](https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage)
 - [Time to first byte](https://blog.stackpath.com/time-to-first-byte/#:~:text=Time%20to%20first%20byte%20(TTFB,contents%20of%20a%20web%20page.)
