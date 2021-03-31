@@ -29,6 +29,10 @@ posts();
 
 const port = process.env.PORT || 7000;
 app.listen(port, () => {
-	console.log(localLog(port));
+	if (process.env.NODE_ENV !== "production") {
+		import("localhost-logger").then(localLog => {
+			localLog.default(port);
+		});
+	}
 	console.log(`Server is running on port ${port}`);
 });

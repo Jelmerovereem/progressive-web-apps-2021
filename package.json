@@ -43,7 +43,9 @@
     "gulp-uglify": "^3.0.2",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
-    "rimraf": "^3.0.2",
-    "localhost-logger": "^1.0.5"
+    "rimraf": "^3.0.2"
+  },
+  "devDependencies": {
+    "localhost-logger": "^1.0.6"
   }
 }
