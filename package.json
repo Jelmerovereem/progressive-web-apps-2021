@@ -41,13 +41,11 @@
     "gulp-concat": "^2.6.1",
     "gulp-rollup": "^2.17.0",
     "gulp-uglify": "^3.0.2",
-    "localhost-logger": "^1.0.5",
     "node-fetch": "^2.6.1",
     "pug": "^3.0.2",
-    "rimraf": "^3.0.2",
-    "webpack": "^5.24.4"
+    "rimraf": "^3.0.2"
   },
   "devDependencies": {
-    "browser-sync": "^2.26.14"
+    "localhost-logger": "^1.0.5"
   }
 }
