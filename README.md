@@ -1,23 +1,22 @@
 # Progressive Web Apps @cmda-minor-web · 20-21
 
-In this course we will convert the client side web application previously made Web App From Scratch into a server side rendered application. We also add functionalities based on the Service Worker and turn the application into a Progressive Web App. Ultimately we are going to implement a series of optimisations to improve the performance of the application.  
+This application shows you the weather for all over the world! With the interactive map you can search all over the world.
 
-## Learning goals
-- [] _You understand the difference between client side and server side rendering and you can apply server side rendering
-in your application_
-- [] _You understand how a Service Worker works and you can implement it in your application._
-- [] _You understand how the critical render path works and how you can optimize it for a better runtime and / or perceived performance._
+![Screenshots](https://user-images.githubusercontent.com/58043913/109636627-1978a500-7b4c-11eb-8931-e4d987fda056.png)
+
+Live link to the application: [progressive-weatherapp.herokuapp.com](https://progressive-weatherapp.herokuapp.com/)
 
 
-<!-- Add a link to your live demo in Github Pages 🌐-->
+## Course description
+For [this course](https://github.com/cmda-minor-web/progressive-web-apps-2021) we learn to build a server side rendered application. Implement a service worker with some functionalities. In the end the application will be a real and optimized in performance **Progressive Web App**!
 
-<!-- ☝️ replace this description with a description of your own work -->
+## Table of Contents
+1. [Install](#install)
+2. [Building](#build)
+3. [Templating engine](#templating-engine)
+4. [Rendering](#rendering)
+5. [Static building](#static-building)
 
-<!-- Add a nice image here at the end of the week, showing off your shiny frontend 📸 -->
-
-<!-- Maybe a table of contents here? 📚 -->
-
-<!-- How about a section that describes how to install this project? 🤓 -->
 ## Install
 ```
 git clone https://github.com/Jelmerovereem/progressive-web-apps-2021
@@ -64,8 +63,13 @@ app.listen(7000, () => console.log("Server is running on port 7000")); // your u
 ```
 
 #### Templating engine
-I'll use or [ejs](https://ejs.co/) or [pug](https://pugjs.org/) as my templating engine for this project.
-I've already worked with EJS before, so it'll be more of a challenge if I use pug this time.
+I use [pug](https://pugjs.org/) as my templating engine for this project.
+I've already worked with [ejs](https://ejs.co/) before, so it'll be more of a challenge if I use pug this time.
+
+To let express know what template engine I'm using:
+```js
+app.set("view engine", "pug");
+```
 
 #### Rendering
 Now we can render our files:
@@ -94,7 +98,7 @@ html(lang="en")
 		title #{pageTitle}
 ```
 
-**Static building**  
+#### Static building
 I followed the talk from Declan for pre-building your website. I followed his steps and now the home page is pre-build inside the `dist/` folder. The templating engine is rendered, the static assets are copy pasted and the CSS & JavaScript files are also pre-built.
 
 _Building HTML / render template file_
@@ -155,10 +159,47 @@ gulp.src([
 	.pipe(gulp.dest("./dist/scripts/"))
 ```
 
-<!-- ...but how does one use this project? What are its features 🤔 -->
+## Features
 
-<!-- What external data source is featured in your project and what are its properties 🌠 -->
+- [x] Interactive map
+- [x] Weather based on searched city
+- [x] Weather based on your own location
+- [x] Clickable pop-up forwarding to a detail page
+- [x] Detail page with a "last updated on" reminder
+- [x] Detail page with the temperature and weather description
+- [x] Background visuals matching the weather and local time
+- [x] Pre built files, so server can serve files way faster
+- [x] Compression, compress middleware so files are smaller and faster loading time
+- [x] Minify and bundle CSS and JS files to optimize performance
+- [x] Offline caching, so you can see weather offline
+- [ ] Weather forecast, for upcoming days
 
-<!-- Maybe a checklist of done stuff and stuff still on your wishlist? ✅ -->
 
-<!-- How about a license here? 📜 (or is it a licence?) 🤷 -->
+## APIs used
+
+- [The OpenWeather map API](https://openweathermap.org/api)  
+With this API you can fetch weather data from all over the world. It has all different kind of fetches you can do. If you want 4 days forecast or just the current weather data, everything is possible.
+- [Leaflet map](https://leafletjs.com/)
+- ~~[Unsplash API](https://unsplash.com/developers)~~
+
+### API Response
+This is what an API response looks like from The OpenWeather API
+```js
+data = {
+	clouds: {}, // The cloudiness in %
+	coord: {},  // City geo location. Lon and lat
+	dt: ,         // Last time when weather was updates in unix (UTC)
+	id: ,         // The city ID
+	main: {},   // The main weather information, temperature, feelslike, etc.
+	name: ,       // City name
+	sys: {},    // More about the country and timezone
+	timezone: ,   // How many seconds difference from the UTC timezone
+	visibility: , // The visiblity meter
+	weather:[], // An array with weather objects containing weather information like description and id for icon
+	wind: {}    // Information about the wind speed, degrees, etc.
+}
+```
+
+## Sources
+- Teacher: Declan Rek - [Voorhoede](https://voorhoede.nl)
+- Student assistent: Wouter van der Heijde - [CMD minor](https://github.com/cmda-minor-web)
