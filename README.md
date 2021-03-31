@@ -288,7 +288,16 @@ self.addEventListener("fetch", async (event) => {
 		event.respondWith(
 			caches.open("html-runtime-cache") // open the html-runtime-cache
 				.then(cache => cache.match(event.request)) // check if cache already exists
-				.then(response => response ? response : fetchAndCache(event.request, "html-runtime-cache")) // if cache does not already exists, cache the request
+				.then((response) => {
+					if (response) {
+						return response;
+					} else { // if cache does not already exists, cache the request and send msg to client
+						if (getPathName(event.request.url) !== "/") {
+							postMessageToClient(event, getPathName(event.request.url))
+						}
+						return fetchAndCache(event.request, "html-runtime-cache");
+					}
+				})
 				.catch(() => {
 					return caches.open(CACHE_VERSION).then(cache => cache.match("/offline")) // if request is not cached, view offline page
 				})
