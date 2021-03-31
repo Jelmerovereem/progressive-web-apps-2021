@@ -325,6 +325,27 @@ function isHtmlGetRequest(request) {
 ## Optimizing
 I've used multiple optimizing methods, like compression and caching.
 
+### Performance terms
+**Critical render path**  
+Minimize the amount of time rendering files and content.
+
+**First view**  
+What the user sees first. First meaningful paint.
+
+**Repeat view**  
+What the user sees after and again. Crush those bytes and cache those requests.
+
+**Perceived performance**  
+How fast does an user **think** a website is.
+
+**Time to interactive**  
+Amount of time it takes for the website to be interactive.
+
+**Time to first byte**  
+Measure amount of time between creating a connection to the server and downloading the contents of a web page / the first byte.
+
+****
+
 ### Compression
 I used the npm package [compression](https://www.npmjs.com/package/compression) to compress the middleware of my application. So every rendered file will be compressed.
 You init it like:
@@ -385,6 +406,13 @@ The Progressive Web App emblem is present! 🎉
 
 </details>
 
+### WebPageTest
+**Home page**  
+![webpagetest_home](https://user-images.githubusercontent.com/58043913/113133566-1a225b00-9220-11eb-8699-c3c3770bc354.png)
+
+**Detail page**  
+![webpagetest_detail](https://user-images.githubusercontent.com/58043913/113133698-3de5a100-9220-11eb-886d-a00f4273e136.png)
+
 ## npm packages used
 ### Dependencies
 * [@babel/core](https://www.npmjs.com/package/@babel/core)
@@ -434,7 +462,9 @@ data = {
 
 ## Sources
 - Teacher: Declan Rek - [Voorhoede](https://voorhoede.nl)
+- Declan's [presentation](https://github.com/cmda-minor-web/progressive-web-apps-2021/blob/master/course/cmd-2020-critical-rendering-path.pdf) about critical rendering path
 - Student assistent: Wouter van der Heijde - [CMD minor](https://github.com/cmda-minor-web)
 - [Web.dev about adding a manifest](https://web.dev/add-manifest/)
 - [More about service workers](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API)
 - [clients.claim()](https://developer.mozilla.org/en-US/docs/Web/API/Clients/claim)
+- [Time to first byte](https://blog.stackpath.com/time-to-first-byte/#:~:text=Time%20to%20first%20byte%20(TTFB,contents%20of%20a%20web%20page.)
