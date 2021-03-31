@@ -6,8 +6,8 @@ function createHtml() {
 	const data = {
 		pageTitle: title
 	}
-	const compiledFunction = pug.compileFile("./views/home.pug"); // compile the pug file to html string
-	const html = compiledFunction(data); // compile the homepage with the data
+
+	const html = pug.renderFile("./views/home.pug", data); // compile and render file
 
 	fs.writeFile("./dist/index.html", html, (err) => { // write the html to the dist folder
 		if (err) console.log(err); // show error if present
